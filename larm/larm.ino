@@ -21,14 +21,16 @@ void setup() {
 }
 
 void loop() {
-  Keyboard kb = readKeyboard();
+  pollKeyboard();
+  Keyboard kb = getStableKeyboard();
 
   // act!
-  digitalWrite(PIN_KEYBOARD_DIOD, kb.on_1 ? HIGH : LOW);
-  digitalWrite(PIN_BLUELIGHT, kb.on_2 ? HIGH : LOW);
+  digitalWrite(PIN_KEYBOARD_DIOD, kb.key.on_1 ? HIGH : LOW);
+  digitalWrite(PIN_BLUELIGHT, kb.key.on_2 ? HIGH : LOW);
 
-  digitalWrite(PIN_TRAFICLIGHT_RED, kb.on_4 ? HIGH : LOW);
-  digitalWrite(PIN_TRAFICLIGHT_AMBER, kb.off_4 ? HIGH : LOW);
-  digitalWrite(PIN_TRAFICLIGHT_GREEN, kb.off_2 ? HIGH : LOW);
+  digitalWrite(PIN_TRAFICLIGHT_RED, kb.key.on_4 ? HIGH : LOW);
+  digitalWrite(PIN_TRAFICLIGHT_AMBER, kb.key.off_4 ? HIGH : LOW);
+  digitalWrite(PIN_TRAFICLIGHT_GREEN, kb.key.off_2 ? HIGH : LOW);
+
+  delay(5);
 }
-
